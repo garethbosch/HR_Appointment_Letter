@@ -1,0 +1,175 @@
+﻿@model UAA.HR.Forms.WebUI.Models.Appointment
+
+
+@*  File         Create.cshtml
+ * 
+ *  Function     Web form to create a new Appointment letter
+ *
+ *  Authors      Gareth Bosch    gbosch@alaska.edu
+ *               Tevin Gladden   tjgldden@alaska.edu
+ *               Rocco Haro      rharo@alaska.edu
+ *
+ *  Date         Fall 2016 
+*@
+
+
+
+@{
+    ViewBag.Title = "New Appointment Letter";
+}
+
+<h2>Create a New Employee Appointment Letter</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <p style="text-align:center;">This form only works if the employee is Staff, Non-Union Represented, and Regular Term</p>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @* Employee name *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Employee address *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Employee_Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Employee_Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Employee_Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Job title *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Job_Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Job_Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Job_Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Working title *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Working_Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Working_Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Working_Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Position number *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Position_Number, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Position_Number, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Position_Number, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Supervisor's name *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Supervisor_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Supervisor_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Supervisor_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Type of employee *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Employee_Type, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.Employee_Type, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Employee_Type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Unions status *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Union_Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.Union_Status, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Union_Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Type of staff *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Staff_Type, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.Staff_Type, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Staff_Type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Type of temporary employee *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Temporary_Type, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.Temporary_Type, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Temporary_Type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Full time or part time *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Full_Time, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                Full Time @Html.RadioButtonFor(model => model.Full_Time,"Full Time", htmlAttributes: new { @class = "form-control" })
+                Part Time @Html.RadioButtonFor(model => model.Full_Time, "Part Time", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Full_Time, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Exempt or not exempt *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Exemption, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                Exempt @Html.RadioButtonFor(model => model.Exemption, "Exempt", htmlAttributes: new { @class = "form-control" })
+                Non-Exempt @Html.RadioButtonFor(model => model.Exemption, "Non-Exempt", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Exemption, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Biweekly salary amount *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Biweekly_Salary, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                (if exempt)@Html.EditorFor(model => model.Biweekly_Salary, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Biweekly_Salary, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Hourly pay rate *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Hourly_Rate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                (if non-exempt)@Html.EditorFor(model => model.Hourly_Rate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Hourly_Rate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Employment beginning date *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Beginning_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Beginning_Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Beginning_Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* Employment ending date *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ending_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ending_Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ending_Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
